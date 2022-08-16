@@ -1,5 +1,17 @@
 # README
 
+## Available Commands
+
+In the project directory, you can run:
+
+### `heroku run rails c`
+
+Access heroku production console.
+
+### `heroku pg:reset + heroku run rails db:migrate + heroku run db:seed`
+
+Reset database and clear all data.
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
