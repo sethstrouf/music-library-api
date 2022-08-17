@@ -1,16 +1,16 @@
-class UsersController < ApplicationController
+class Api::V1::UsersController < ApplicationController
   before_action :set_user, only: %i[ show update destroy ]
 
   # GET /users
   def index
     users = User.all
 
-    render json: UserSerializer.new(users).serializable_hash
+    render json: Api::V1::UserSerializer.new(users).serializable_hash
   end
 
   # GET /users/1
   def show
-    render json: UserSerializer.new(@user).serializable_hash
+    render json: Api::V1::UserSerializer.new(@user).serializable_hash
   end
 
   # POST /users
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     user = User.new(user_params)
 
     if user.save
-      render json: UserSerializer.new(user).serializable_hash
+      render json: Api::V1::UserSerializer.new(user).serializable_hash
     else
       render json: user.errors, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   def update
     if @user.update(user_params)
-      render json: UserSerializer.new(@user).serializable_hash
+      render json: Api::V1::UserSerializer.new(@user).serializable_hash
     else
       render json: @user.errors, status: :unprocessable_entity
     end
