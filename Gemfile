@@ -16,6 +16,9 @@ gem "puma", "~> 5.0"
 # gem "jbuilder"
 gem 'jsonapi-serializer'
 
+gem 'jwt', '~> 1.5', '>= 1.5.4'
+gem 'figaro'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
