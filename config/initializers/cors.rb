@@ -7,10 +7,15 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins '*'
+    if Rails.env.development?
+      origins 'localhost:3001', 'localhost:3000'
+    else
+      origins 'https://strouf-music-library-app.herokuapp.com'
+    end
 
     resource '*',
       headers: :any,
-      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+      methods: [:get, :post, :put, :patch, :delete, :options, :head],
+      credentials: true
   end
 end

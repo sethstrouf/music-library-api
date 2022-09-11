@@ -1,6 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :authorize!
-  before_action :set_user, only: %i[ show update destroy ]
+  before_action :set_user, only: %i[ show ]
 
   # GET /users
   def index
@@ -9,35 +8,39 @@ class Api::V1::UsersController < ApplicationController
     render json: Api::V1::UserSerializer.new(users).serializable_hash
   end
 
+  def get_current_user
+    render json: current_user
+  end
+
   # GET /users/1
   def show
     render json: Api::V1::UserSerializer.new(@user).serializable_hash
   end
 
   # POST /users
-  def create
-    user = User.new(user_params)
+  # def create
+  #   user = User.new(user_params)
 
-    if user.save
-      render json: Api::V1::UserSerializer.new(user).serializable_hash
-    else
-      render json: user.errors, status: :unprocessable_entity
-    end
-  end
+  #   if user.save
+  #     render json: Api::V1::UserSerializer.new(user).serializable_hash
+  #   else
+  #     render json: user.errors, status: :unprocessable_entity
+  #   end
+  # end
 
   # PATCH/PUT /users/1
-  def update
-    if @user.update(user_params)
-      render json: Api::V1::UserSerializer.new(@user).serializable_hash
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    end
-  end
+  # def update
+  #   if @user.update(user_params)
+  #     render json: Api::V1::UserSerializer.new(@user).serializable_hash
+  #   else
+  #     render json: @user.errors, status: :unprocessable_entity
+  #   end
+  # end
 
   # DELETE /users/1
-  def destroy
-    @user.destroy
-  end
+  # def destroy
+  #   @user.destroy
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -47,6 +50,6 @@ class Api::V1::UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).require(:attributes).permit(:name, :email)
+      params.require(:user).require(:attributes).permit(:email)
     end
 end
