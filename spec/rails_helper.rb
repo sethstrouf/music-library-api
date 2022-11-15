@@ -1,6 +1,7 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
+ENV['DEVISE_JWT_SECRET_KEY']='ae516952359c41dbee5b76aa4b76a2d0d502999f59844b87e7a2b83f40a4aec713642560a36dbb0136ef291c9a7eb66735c3c333cf7ab12c5f25f25da4456d0f'
 require_relative '../config/environment'
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?

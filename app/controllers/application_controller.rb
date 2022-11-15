@@ -30,6 +30,13 @@ class ApplicationController < ActionController::API
     @token ||= result
   end
 
+  protected
+
+  def current_user
+    token = request&.headers['Authorization']&.split&.last
+    Warden::JWTAuth::UserDecoder.new.call(token, :user, nil) if token.present?
+  end
+
   private
 
   def verify(token)

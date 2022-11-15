@@ -8,10 +8,6 @@ class Api::V1::UsersController < ApplicationController
     render json: Api::V1::UserSerializer.new(users).serializable_hash
   end
 
-  def get_current_user
-    render json: current_user
-  end
-
   # GET /users/1
   def show
     render json: Api::V1::UserSerializer.new(@user).serializable_hash

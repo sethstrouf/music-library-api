@@ -44,15 +44,4 @@ describe Api::V1::UsersController, type: :request do
       expect(response.status).to eq(401)
     end
   end
-
-  context 'When fetching the currently logged in user' do
-    before do
-      login(user)
-      get "/api/v1/current_user"
-    end
-
-    it 'returns currently logged in user' do
-      expect(json['id']).to be(user.id)
-    end
-  end
 end

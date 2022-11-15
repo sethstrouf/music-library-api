@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe SessionsController, type: :request do
+describe Users::SessionsController, type: :request do
 
   let(:user) { create_user }
   let(:login_url) { '/api/login' }
@@ -35,17 +35,19 @@ describe SessionsController, type: :request do
     end
 
     it 'returns invalid email or password error' do
-      expect(json['error']).to include('Invalid Email or password.')
+      expect(response.body).to eq('Invalid Email or password.')
     end
   end
 
   context 'When logging out' do
     before do
-      delete logout_url
+      login(user)
+      bearer_token = response.headers['Authorization']
+      delete logout_url, headers: { 'Authorization' => bearer_token }
     end
 
-    it 'returns 204' do
-      expect(response).to have_http_status(204)
+    it 'returns 200' do
+      expect(response).to have_http_status(200)
     end
   end
 end

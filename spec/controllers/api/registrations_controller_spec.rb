@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe RegistrationsController, type: :request do
+describe Users::RegistrationsController, type: :request do
 
   let(:user) { build_user }
   let(:existing_user) { create_user }
@@ -25,7 +25,7 @@ describe RegistrationsController, type: :request do
     end
 
     it 'returns the user email' do
-      expect(json['data']).to have_attribute(:email).with_value(user.email)
+      expect(json['data']['email']).to eq(user.email)
     end
   end
 
@@ -40,11 +40,11 @@ describe RegistrationsController, type: :request do
     end
 
     it 'returns 400' do
-      expect(response.status).to eq(400)
+      expect(response.status).to eq(422)
     end
 
     it 'returns email has already been taken error' do
-      expect(json['email']).to include('has already been taken')
+      expect(json['status']['message']).to eq("User couldn't be created successfully. Email has already been taken")
     end
   end
 end
