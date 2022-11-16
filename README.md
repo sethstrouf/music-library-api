@@ -12,6 +12,10 @@ Access heroku production console.
 
 Reset database and clear all data.
 
+### `bin/rails zeitwerk:check`
+
+Check Zeitwerk loader before deploy.
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
