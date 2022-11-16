@@ -8,7 +8,7 @@ In the project directory, you can run:
 
 Access heroku production console.
 
-### `heroku pg:reset + heroku run rails db:migrate + heroku run db:seed`
+### `heroku pg:reset && heroku run rails db:migrate && heroku run db:seed`
 
 Reset database and clear all data.
 
