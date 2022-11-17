@@ -22,19 +22,6 @@ describe Api::V1::UsersController, type: :request do
     end
   end
 
-  context 'When a user is missing' do
-    before do
-      login(user)
-      get "/api/v1/users/blank", headers: {
-        'Authorization': response.headers['Authorization']
-      }
-    end
-
-    it 'returns 404' do
-      expect(response.status).to eq(404)
-    end
-  end
-
   context 'When the Authorization header is missing' do
     before do
       get "/api/v1/users/#{user.id}"
