@@ -1,16 +1,18 @@
 class Api::V1::UsersController < ApplicationController
   before_action :set_user, only: %i[ show ]
 
-  # GET /users
   def index
     users = User.all
 
     render json: Api::V1::UserSerializer.new(users).serializable_hash
   end
 
-  # GET /users/1
   def show
     render json: Api::V1::UserSerializer.new(@user).serializable_hash
+  end
+
+  def signed_in_user
+    render json: Api::V1::UserSerializer.new(current_user).serializable_hash[:data][:attributes]
   end
 
   # POST /users

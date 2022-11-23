@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :users, only: %w[index show]
-      get '/current_user', to: 'users#get_current_user'
+      get '/current_user', to: 'users#signed_in_user'
     end
   end
 
