@@ -11,7 +11,9 @@ describe Users::RegistrationsController, type: :request do
       post signup_url, params: {
         user: {
           email: user.email,
-          password: user.password
+          password: user.password,
+          first_name: user.first_name,
+          last_name: user.last_name
         }
       }
     end
