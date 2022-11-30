@@ -31,6 +31,28 @@ describe Users::RegistrationsController, type: :request do
     end
   end
 
+  context 'When updating a user' do
+    before do
+      login(existing_user)
+
+      patch signup_url,
+        params: {
+          user: {
+            first_name: 'firstTest',
+            last_name: 'lastTest'
+          }
+        },
+        headers: {
+          'Authorization': response.headers['Authorization']
+        }
+    end
+
+    it 'updates first name and last name' do
+      expect(existing_user.reload.first_name).to eq('firstTest')
+      expect(existing_user.reload.last_name).to eq('lastTest')
+    end
+  end
+
   context 'When an email already exists' do
     before do
       post signup_url, params: {

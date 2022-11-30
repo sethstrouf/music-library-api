@@ -4,7 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   respond_to :json
 
   before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
+  before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   # def new
@@ -22,9 +22,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super
+    if current_user.update!(resource.attributes)
+      render json: {
+        status: {code: 200, message: 'Updated successfully.'},
+        data: Api::V1::UserSerializer.new(current_user.reload).serializable_hash[:data][:attributes]
+      }
+    else
+      render json: {
+        status: {message: "User couldn't be updated successfully."}
+      }, status: :internal_server_error
+    end
+  end
 
   # DELETE /resource
   # def destroy
@@ -48,9 +58,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-  # end
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name])
+  end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
@@ -65,15 +75,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
     def respond_with(resource, _opts = {})
-      if resource.persisted?
-        render json: {
-          status: {code: 200, message: 'Signed up successfully.'},
-          data: Api::V1::UserSerializer.new(resource).serializable_hash[:data][:attributes]
-        }
-      else
-        render json: {
-          status: {message: "User couldn't be created successfully. #{resource.errors.full_messages.to_sentence}"}
-        }, status: :unprocessable_entity
+      if params['action'] == 'create'
+        if resource.persisted?
+          render json: {
+            status: {code: 200, message: 'Signed up successfully.'},
+            data: Api::V1::UserSerializer.new(resource).serializable_hash[:data][:attributes]
+          }
+        else
+          render json: {
+            status: {message: "User couldn't be created successfully. #{resource.errors.full_messages.to_sentence}"}
+          }, status: :unprocessable_entity
+        end
       end
     end
 end
