@@ -6,7 +6,7 @@ describe Users::RegistrationsController, type: :request do
   let(:existing_user) { create_user }
   let(:signup_url) { '/api/signup' }
 
-  context 'When creating a new user' do
+  context 'test' do
     before do
       post signup_url, params: {
         user: {
