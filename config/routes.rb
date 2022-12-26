@@ -4,6 +4,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: %w[index show]
       resources :current_user, only: %w[index]
+      resources :works, only: %w[index create show update destroy]
+      resources :libraries, only: %w[index create show update destroy]
+      resources :library_works, only: %w[index create show update destroy]
     end
   end
 

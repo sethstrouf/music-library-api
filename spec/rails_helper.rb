@@ -5,8 +5,10 @@ ENV['DEVISE_JWT_SECRET_KEY']='ae516952359c41dbee5b76aa4b76a2d0d502999f59844b87e7
 require_relative '../config/environment'
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
+
 require 'rspec/rails'
 require 'jsonapi/rspec'
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in

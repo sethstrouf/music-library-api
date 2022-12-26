@@ -10,7 +10,7 @@ jobs:
     # https://github.com/actions/example-services/tree/master/.github/workflows
     services:
       postgres:
-        image: postgres:10.8
+        image: postgres:12.1
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: ""
@@ -50,7 +50,7 @@ jobs:
 
       - name: Create DB
         run: |
-          bin/rails db:prepare
+          bin/rails db:test:prepare
 
       - name: Run tests
         run: |
