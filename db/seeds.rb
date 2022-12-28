@@ -17,6 +17,6 @@ user.libraries.create!(name: "Seth's Band Library")
 user.libraries.create!(name: "Seth's Orchestra Library")
 
 25.times do |i|
-  work = Work.create!(index: i+500, title: "Title #{i}", composer: "Composer #{i}", genre: 'Holiday', publishing_year: 1950 + i)
-  library.library_works.create!(work: work, quantity: i + 60, last_performed: Date.today - i.months)
+  work = Work.create!(title: "Title #{i}", composer: "Composer #{i}", genre: 'Holiday', publishing_year: 1950 + i)
+  library.library_works.create!(index: i+500, work: work, quantity: i + 60, last_performed: Date.today - i.months)
 end

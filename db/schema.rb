@@ -29,6 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_26_022829) do
   end
 
   create_table "library_works", force: :cascade do |t|
+    t.integer "index"
     t.integer "quantity"
     t.date "last_performed"
     t.bigint "work_id", null: false
@@ -54,7 +55,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_26_022829) do
   end
 
   create_table "works", force: :cascade do |t|
-    t.integer "index"
     t.string "title", null: false
     t.string "composer", null: false
     t.string "genre"
