@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :works, only: %w[index create show update destroy]
       resources :libraries, only: %w[index create show update destroy]
       resources :library_works, only: %w[index create show update destroy]
+      get '/search_works', to: 'search#search_works'
     end
   end
 

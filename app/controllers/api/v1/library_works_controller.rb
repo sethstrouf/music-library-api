@@ -44,6 +44,6 @@ class Api::V1::LibraryWorksController < ApplicationController
     end
 
     def library_work_params
-      params.require(:library_work).permit(:quantity, :last_performed, :work_id, :library_id)
+      params.require(:library_work).permit(:index, :quantity, :last_performed, :work_id, :library_id)
     end
 end

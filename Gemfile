@@ -22,6 +22,8 @@ gem 'devise'
 
 gem 'devise-jwt', '~> 0.9.0'
 
+gem 'pg_search', '~> 2.3', '>= 2.3.6'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

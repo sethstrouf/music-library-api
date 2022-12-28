@@ -7,6 +7,7 @@ describe Api::V1::LibraryWorksController, type: :request do
     @work = Work.create!(title: 'Test Work', composer: 'Test Composer', genre: 'Test Genre', publishing_year: 2008)
 
     @library_work_params = {
+      index: 3,
       quantity: 47,
       last_performed: Date.new(2022, 12, 18),
       work_id: @work.id,
