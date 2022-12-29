@@ -45,7 +45,10 @@ describe Api::V1::LibrariesController, type: :request do
   describe 'GET #show' do
     before do
       @new_library = @user.libraries.create!(@library_params)
-      get "/api/v1/libraries/#{@new_library.id}"
+      get "/api/v1/libraries/#{@new_library.id}",
+        headers: {
+          'Authorization': response.headers['Authorization']
+        }
     end
 
     it 'returns library' do

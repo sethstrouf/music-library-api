@@ -1,5 +1,5 @@
 class Api::V1::LibrariesController < ApplicationController
-  before_action :set_library, only: %i[show update destroy]
+  before_action :set_library, only: %i[update destroy]
 
   def index
     libraries = current_user.libraries.all
@@ -18,6 +18,8 @@ class Api::V1::LibrariesController < ApplicationController
   end
 
   def show
+    authorize @library = Library.find(params[:id])
+
     render json: Api::V1::LibrarySerializer.new(@library).serializable_hash[:data]
   end
 
