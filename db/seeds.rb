@@ -38,7 +38,7 @@ choir_library.library_works.create!(index: 1232, work: work, last_performed: Dat
 work = Work.create!(title: 'You Will Be Found', composer: 'Mac Huff', genre: 'Musical')
 choir_library.library_works.create!(work: work, quantity: 1, last_performed: Date.today - 4.months)
 
-work = Work.create!(title: "J'entends le Moulin", composer: 'Emliy Crocker', genre: 'Folk')
+work = Work.create!(title: "J'entends le Moulin", composer: 'Emily Crocker', genre: 'Folk')
 choir_library.library_works.create!(work: work)
 
 work = Work.create!(title: 'Stars I Shall Find', composer: 'Victor C. Johnson', publishing_year: 2008)

@@ -76,7 +76,7 @@ describe Api::V1::LibraryWorksController, type: :request do
         }
     end
 
-    it 'updates library' do
+    it 'updates library work' do
       expect(@library.library_works.first.quantity).to eq(95)
     end
   end
@@ -87,7 +87,7 @@ describe Api::V1::LibraryWorksController, type: :request do
       delete "/api/v1/library_works/#{@new_library.id}"
     end
 
-    it 'destroys library' do
+    it 'destroys library work' do
       expect(@library.library_works.first).to_not be_present
     end
   end

@@ -24,7 +24,7 @@ class Api::V1::LibraryWorksController < ApplicationController
 
   def update
     if @library_work.update(library_work_params)
-      render json: Api::V1::LibraryWorkSerializer.new(@library_work).serializable_hash
+      render json: Api::V1::LibraryWorkSerializer.new(@library_work).serializable_hash[:data]
     else
       render json: @library_work.errors, status: :unprocessable_entity
     end
