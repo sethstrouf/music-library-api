@@ -12,6 +12,7 @@ gem 'devise'
 gem 'devise-jwt', '~> 0.9.0'
 gem 'pg_search', '~> 2.3', '>= 2.3.6'
 gem 'pundit', '~> 1.1'
+gem 'auto_strip_attributes', '~> 2.0', '>= 2.0.6'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]

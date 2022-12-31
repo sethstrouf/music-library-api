@@ -39,6 +39,6 @@ class Api::V1::WorksController < ApplicationController
     end
 
     def work_params
-      params.require(:work).permit(:index, :title, :composer, :genre, :publishing_year)
+      params.require(:work).permit(:title, :composer, :genre, :publishing_year)
     end
 end
