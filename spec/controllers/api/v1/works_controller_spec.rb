@@ -5,7 +5,7 @@ describe Api::V1::WorksController, type: :request do
     @work_params = {
       title: 'Test Work',
       composer: 'Test Composer',
-      genre: 'Test Genre',
+      genre: 'folk',
       publishing_year: 2008
     }
 

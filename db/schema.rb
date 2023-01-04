@@ -32,6 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_26_022829) do
     t.integer "index"
     t.integer "quantity"
     t.date "last_performed"
+    t.boolean "checked_out", default: false
     t.bigint "work_id", null: false
     t.bigint "library_id", null: false
     t.datetime "created_at", null: false
@@ -47,6 +48,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_26_022829) do
     t.string "encrypted_password", default: "", null: false
     t.string "first_name", null: false
     t.string "last_name", null: false
+    t.string "membership", default: "free", null: false
+    t.boolean "admin", default: false, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -56,9 +59,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_26_022829) do
 
   create_table "works", force: :cascade do |t|
     t.string "title", null: false
-    t.string "composer", null: false
-    t.string "genre"
+    t.string "composer"
+    t.string "arranger"
+    t.string "editor"
+    t.string "lyricist"
+    t.string "text"
     t.integer "publishing_year"
+    t.string "publisher"
+    t.string "language"
+    t.string "duration"
+    t.string "tempo"
+    t.string "genre"
+    t.string "season"
+    t.string "ensemble"
+    t.string "voicing"
+    t.string "instrumentation"
+    t.string "difficulty"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

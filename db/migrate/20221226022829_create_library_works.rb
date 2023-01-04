@@ -4,6 +4,7 @@ class CreateLibraryWorks < ActiveRecord::Migration[7.0]
       t.integer :index
       t.integer :quantity
       t.date :last_performed
+      t.boolean :checked_out, default: false
       t.references :work, null: false, foreign_key: true
       t.references :library, null: false, foreign_key: true
 

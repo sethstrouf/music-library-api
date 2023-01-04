@@ -4,7 +4,7 @@ describe Api::V1::LibraryWorksController, type: :request do
   before do
     @user = create_user
     @library = @user.libraries.create!(name: 'Personal Library')
-    @work = Work.create!(title: 'Test Work', composer: 'Test Composer', genre: 'Test Genre', publishing_year: 2008)
+    @work = Work.create!(title: 'Test Work', composer: 'Test Composer', genre: 'folk', publishing_year: 2008)
 
     @library_work_params = {
       index: 3,

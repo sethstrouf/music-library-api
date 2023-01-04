@@ -51,13 +51,13 @@ describe Api::V1::SearchController, type: :request do
 
     context 'When searching by genre' do
       before do
-        @dog_genre = Work.create!(genre: 'Dog', title: 'Test', composer: 'Test')
-        cat_genre = Work.create!(genre: 'Cat', title: 'Test', composer: 'Test')
+        @folk_genre = Work.create!(genre: :folk, title: 'Test', composer: 'Test')
+        holiday_genre = Work.create!(genre: 'holiday', title: 'Test', composer: 'Test')
 
         get "/api/v1/search_works",
           params: {
             works_query: {
-              query: @dog_genre.genre
+              query: @folk_genre.genre
             }
           }
       end
@@ -65,7 +65,7 @@ describe Api::V1::SearchController, type: :request do
       it 'returns accurate results' do
         results = JSON.parse(response.body)
         expect(results.count).to eq(1)
-        expect(results.first['attributes']['genre']).to eq(@dog_genre.genre)
+        expect(results.first['attributes']['genre']).to eq(@folk_genre.genre)
       end
     end
 
@@ -95,15 +95,15 @@ describe Api::V1::SearchController, type: :request do
         cat_title = Work.create!(title: 'Cat and Song', composer: 'Test')
         @dog_title_and_composer = Work.create!(title: 'Dog', composer: 'Dog')
         cat_composer = Work.create!(title: 'Test', composer: 'Cat')
-        @dog_genre = Work.create!(genre: 'Dog', title: 'Test', composer: 'Test')
-        cat_genre = Work.create!(genre: 'Cat', title: 'Test', composer: 'Test')
+        @folk_genre = Work.create!(genre: :folk, title: 'Test', composer: 'Test')
+        holiday_genre = Work.create!(genre: :holiday, title: 'Test', composer: 'Test')
         @year_1988 = Work.create!(publishing_year: 1988, title: 'Test', composer: 'Test')
         year_1999 = Work.create!(publishing_year: 1999, title: 'Test', composer: 'Test')
 
         get "/api/v1/search_works",
           params: {
             works_query: {
-              query: 'dog 1988'
+              query: 'folk dog 1988'
             }
           }
       end
@@ -113,7 +113,7 @@ describe Api::V1::SearchController, type: :request do
         expect(results.count).to eq(4)
         expect(results.first['id'].to_i).to eq(@dog_title_and_composer.id)
         expect(results.second['id'].to_i).to eq(@dog_title.id)
-        expect(results.third['id'].to_i).to eq(@dog_genre.id)
+        expect(results.third['id'].to_i).to eq(@folk_genre.id)
         expect(results.fourth['id'].to_i).to eq(@year_1988.id)
       end
     end

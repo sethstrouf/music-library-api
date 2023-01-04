@@ -10,6 +10,7 @@ FactoryBot.define do
       last_name  { 'Strouf' }
       email  { 'seth@mail.com' }
       password { ENV["ADMIN_PASSWORD"] }
+      admin { true }
     end
   end
 
