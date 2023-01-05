@@ -71,13 +71,15 @@ describe Api::V1::LibraryWorksController, type: :request do
       patch "/api/v1/library_works/#{@new_library_work.id}",
         params: {
           library_work: {
-            quantity: 95
+            quantity: 95,
+            checked_out: true
           }
         }
     end
 
     it 'updates library work' do
       expect(@library.library_works.first.quantity).to eq(95)
+      expect(@library.library_works.first.checked_out).to be(true)
     end
   end
 
