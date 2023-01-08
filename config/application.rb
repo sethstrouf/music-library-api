@@ -43,8 +43,6 @@ module Backend
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore, key: '_namespace_key'
 
-    config.active_storage.variant_processor = :mini_magick
-
     config.api_only = true
   end
 end

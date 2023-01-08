@@ -113,7 +113,7 @@ class Work < ApplicationRecord
         self.update!(image_url: new_image_url) if self.image_url != new_image_url
       else
         image = self.image.variant(resize_to_limit: [500, 500])
-        blob_path = Rails.application.routes.url_helpers.rails_blob_path(image, only_path: true)
+        blob_path = "http://localhost:3000/#{Rails.application.routes.url_helpers.rails_blob_path(image, only_path: true)}"
         self.update!(image_url: blob_path) if self.image_url != blob_path
       end
     end
