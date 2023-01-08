@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :users, only: %w[index show]
+      resources :users, only: %w[index show update]
       resources :current_user, only: %w[index]
       resources :works, only: %w[index create show update destroy]
       resources :libraries, only: %w[index create show update destroy]

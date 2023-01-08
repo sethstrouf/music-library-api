@@ -82,7 +82,7 @@ class Work < ApplicationRecord
   auto_strip_attributes :title, :composer
   auto_strip_attributes :genre, :publishing_year, squish: true
 
-  has_one_attached :image
+  has_one_attached :image, dependent: :destroy
 
   has_many :library_works, dependent: :destroy
 
@@ -112,8 +112,7 @@ class Work < ApplicationRecord
         new_image_url = self.image.url
         self.update!(image_url: new_image_url) if self.image_url != new_image_url
       else
-        image = self.image.variant(resize_to_limit: [500, 500])
-        blob_path = "http://localhost:3000/#{Rails.application.routes.url_helpers.rails_blob_path(image, only_path: true)}"
+        blob_path = "http://localhost:3000/#{Rails.application.routes.url_helpers.rails_blob_path(self.image, only_path: true)}"
         self.update!(image_url: blob_path) if self.image_url != blob_path
       end
     end

@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :set_user, only: %i[show]
+  before_action :set_user, only: %i[show update]
 
   def index
     users = User.all
@@ -23,13 +23,15 @@ class Api::V1::UsersController < ApplicationController
   # end
 
   # PATCH/PUT /users/1
-  # def update
-  #   if @user.update(user_params)
-  #     render json: Api::V1::UserSerializer.new(@user).serializable_hash
-  #   else
-  #     render json: @user.errors, status: :unprocessable_entity
-  #   end
-  # end
+  def update
+    if params[:photo].present?
+      @user.profile_photo.attach(params[:photo])
+    elsif @user.update(user_params)
+      render json: Api::V1::UserSerializer.new(@user).serializable_hash
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
+  end
 
   # DELETE /users/1
   # def destroy
@@ -44,6 +46,10 @@ class Api::V1::UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).require(:attributes).permit(:email)
+      if params[:photo].present?
+        params.permit(:photo)
+      else
+        params.require(:user).require(:attributes).permit(:email)
+      end
     end
 end
