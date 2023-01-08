@@ -22,7 +22,9 @@ class Api::V1::WorksController < ApplicationController
   end
 
   def update
-    if @work.update(work_params)
+    if params[:image].present?
+      @work.image.attach(params[:image])
+   elsif @work.update!(work_params)
       render json: Api::V1::WorkSerializer.new(@work).serializable_hash
     else
       render json: @work.errors, status: :unprocessable_entity
@@ -39,6 +41,10 @@ class Api::V1::WorksController < ApplicationController
     end
 
     def work_params
-      params.require(:work).permit(:title, :composer, :genre, :publishing_year)
+      if params[:image].present?
+        params.permit(:image)
+      else
+        params.require(:work).permit(:title, :composer, :genre, :publishing_year)
+      end
     end
 end
