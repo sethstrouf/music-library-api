@@ -82,7 +82,11 @@ class Work < ApplicationRecord
   auto_strip_attributes :title, :composer
   auto_strip_attributes :genre, :publishing_year, squish: true
 
+  has_one_attached :image
+
   has_many :library_works, dependent: :destroy
+
+  after_save :set_image_url
 
   pg_search_scope :search,
     against: [
@@ -101,6 +105,14 @@ class Work < ApplicationRecord
         any_word: true
       }
     }
+
+  def set_image_url
+    if self.image.present?
+      image = self.image.variant(resize_to_limit: [500, 500])
+      blob_path = Rails.application.routes.url_helpers.rails_blob_path(image, only_path: true)
+      self.update!(image_url: blob_path) if self.image_url != blob_path
+    end
+  end
 
   private
 
