@@ -109,7 +109,7 @@ class Work < ApplicationRecord
   def set_image_url
     if self.image.present?
       if ENV['RAILS_ENV'] == 'production'
-        new_image_url = self.image.url
+        new_image_url = self.image.url.split(/\?/, 2).first
         self.update!(image_url: new_image_url) if self.image_url != new_image_url
       else
         blob_path = "http://localhost:3000/#{Rails.application.routes.url_helpers.rails_blob_path(self.image, only_path: true)}"

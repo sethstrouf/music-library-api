@@ -27,7 +27,7 @@ class User < ApplicationRecord
   def set_profile_photo_url
     if self.profile_photo.present?
       if ENV['RAILS_ENV'] == 'production'
-        new_profile_photo_url = self.profile_photo.url
+        new_profile_photo_url = self.profile_photo.url.split(/\?/, 2).first
         self.update!(profile_photo_url: new_profile_photo_url) if self.profile_photo_url != new_profile_photo_url
       else
         blob_path = "http://localhost:3000/#{Rails.application.routes.url_helpers.rails_blob_path(self.profile_photo, only_path: true)}"
