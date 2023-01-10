@@ -3,7 +3,7 @@ class Api::V1::LibraryWorksController < ApplicationController
   before_action :set_library_work, only: %i[show update destroy]
 
   def index
-    library_works = @library.library_works.all
+    library_works = @library.library_works.all.sort_by_work_title
 
     render json: Api::V1::LibraryWorkSerializer.new(library_works).serializable_hash[:data]
   end

@@ -6,6 +6,8 @@ class LibraryWork < ApplicationRecord
   belongs_to :work
   belongs_to :library
 
+  scope :sort_by_work_title, -> { joins(:work).order('works.title ASC') }
+
   pg_search_scope :search,
     associated_against: {
       work: [:title, :composer, :arranger, :editor, :lyricist, :genre,

@@ -29,7 +29,7 @@ choir_library.library_works.create!(index: 85, work: work, quantity: 30, last_pe
 work = Work.create!(title: 'Bonse Aba', composer: 'Victor C. Johnson', genre: :cultural, publishing_year: 2010)
 choir_library.library_works.create!(index: 2, work: work, quantity: 65, last_performed: Date.today - 6.months)
 
-work = Work.create!(title: 'The Seal Lullaby', composer: 'Eric Whitacre', genre: :modern, publishing_year: 2008)
+work = Work.create!(title: 'Seal Lullaby, The', composer: 'Eric Whitacre', genre: :modern, publishing_year: 2008)
 choir_library.library_works.create!(index: 987, work: work, quantity: 65, last_performed: Date.today - 6.months)
 
 work = Work.create!(title: 'Glow', composer: 'Eric Whitacre', genre: :modern, publishing_year: 2013)
@@ -57,7 +57,7 @@ band_library.library_works.create!(work: work)
 work = Work.create!(title: 'First Suite in E Flat', composer: 'Gustav Holst', genre: :classical)
 
 # Jazz Band
-work = Work.create!(title: 'The Christmas Song', composer: 'Mark Taylor', genre: :holiday)
+work = Work.create!(title: 'Christmas Song, The', composer: 'Mark Taylor', genre: :holiday)
 
 work = Work.create!(title: 'Swingle Bells', composer: 'Chris Sharp', genre: :holiday)
 
@@ -77,6 +77,6 @@ work = Work.create!(title: '1812 Overture', composer: 'P.I. Tchaikovsky', genre:
 # Solos
 work = Work.create!(title: '24 Italian Songs and Arias', composer: 'Various')
 
-work = Work.create!(title: 'The Young Singer', composer: 'Richard D. Row')
+work = Work.create!(title: 'Young Singer, The', composer: 'Richard D. Row')
 
-work = Work.create!(title: 'The First Book of Baritone/Bass Solos', composer: 'Joan Frey Boytim')
+work = Work.create!(title: 'First Book of Baritone/Bass Solos, The', composer: 'Joan Frey Boytim')
