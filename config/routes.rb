@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :libraries, only: %w[index create show update destroy]
       resources :library_works, only: %w[index create show update destroy]
       get '/search_works', to: 'search#search_works'
+      get '/search_library_works', to: 'search#search_library_works'
     end
   end
 
