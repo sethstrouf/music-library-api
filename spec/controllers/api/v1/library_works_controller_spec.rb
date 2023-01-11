@@ -19,7 +19,7 @@ describe Api::V1::LibraryWorksController, type: :request do
 
   describe 'GET #index' do
     before do
-      5.times do |i|
+      15.times do |i|
         work = Work.create!(title: "Title #{i}", composer: "Composer #{i}")
         @library.library_works.create!(
           quantity: i,
@@ -28,16 +28,20 @@ describe Api::V1::LibraryWorksController, type: :request do
         )
       end
 
+      @per_page = 10
+
       get '/api/v1/library_works',
         params: {
           library_work: {
-            library_id: @library.id
-          }
+            library_id: @library.id,
+          },
+          per_page: @per_page,
+          page: 1
         }
     end
 
-    it 'returns library works for a given library' do
-      expect(JSON.parse(response.body).count).to eq(@library.library_works.count)
+    it 'returns paginated library works for a given library' do
+      expect(JSON.parse(response.body)['data'].count).to eq(@per_page)
     end
   end
 

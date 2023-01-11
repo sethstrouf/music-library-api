@@ -166,6 +166,7 @@ GEM
     nokogiri (1.13.8-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pagy (6.0.0)
     pg (1.4.3)
     pg_search (2.3.6)
       activerecord (>= 5.2)
@@ -262,6 +263,7 @@ DEPENDENCIES
   figaro (~> 1.1, >= 1.1.1)
   jsonapi-rspec
   jsonapi-serializer
+  pagy (~> 6.0)
   pg (~> 1.1)
   pg_search (~> 2.3, >= 2.3.6)
   puma (~> 5.0)

@@ -1,11 +1,17 @@
 class Api::V1::LibraryWorksController < ApplicationController
+  include Pagy::Backend
+
   before_action :set_library, only: %i[index create]
   before_action :set_library_work, only: %i[show update destroy]
 
   def index
     library_works = @library.library_works.all.sort_by_work_title
 
-    render json: Api::V1::LibraryWorkSerializer.new(library_works).serializable_hash[:data]
+    pagy, records = pagy(library_works, items: params[:per_page] || 10)
+    pagy_headers_merge(pagy)
+    meta = pagy_metadata(pagy)
+
+    render json: Api::V1::LibraryWorkSerializer.new(records, meta: meta).serializable_hash
   end
 
   def create
