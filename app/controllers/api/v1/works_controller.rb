@@ -44,7 +44,9 @@ class Api::V1::WorksController < ApplicationController
       if params[:image].present?
         params.permit(:image)
       else
-        params.require(:work).permit(:title, :composer, :genre, :publishing_year)
+        params.require(:work).permit(:title, :composer, :arranger, :editor, :lyricist, :genre,
+          :text, :publisher, :publishing_year, :language, :duration, :tempo, :season,
+          :ensemble, :voicing, :instrumentation, :difficulty)
       end
     end
 end

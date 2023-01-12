@@ -96,7 +96,7 @@ class Work < ApplicationRecord
       [:editor, 'B'],
       [:lyricist, 'C'],
       [:genre, 'C'],
-      :text, :publisher, :publishing_year, :duration, :tempo, :season,
+      :text, :publisher, :publishing_year, :language, :duration, :tempo, :season,
       :ensemble, :voicing, :instrumentation, :difficulty
     ],
     using: {
