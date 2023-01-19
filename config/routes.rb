@@ -7,8 +7,16 @@ Rails.application.routes.draw do
       resources :works, only: %w[index create show update destroy]
       resources :libraries, only: %w[index create show update destroy]
       resources :library_works, only: %w[index create show update destroy]
+      resources :relationships, only: [:create, :destroy]
       get '/search_works', to: 'search#search_works'
       get '/search_library_works', to: 'search#search_library_works'
+      get '/search_following_colleagues', to: 'search#search_following_colleagues'
+      get '/search_all_colleagues', to: 'search#search_all_colleagues'
+      resources :users do
+        member do
+          get :following, :followers
+        end
+      end
     end
   end
 

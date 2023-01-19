@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :set_user, only: %i[show update]
+  before_action :set_user, only: %i[show update following followers]
 
   def index
     users = User.all
@@ -22,7 +22,6 @@ class Api::V1::UsersController < ApplicationController
   #   end
   # end
 
-  # PATCH/PUT /users/1
   def update
     if params[:photo].present?
       @user.profile_photo.attach(params[:photo])
@@ -37,6 +36,16 @@ class Api::V1::UsersController < ApplicationController
   # def destroy
   #   @user.destroy
   # end
+
+  def following
+    users = @user.following
+    render json: Api::V1::UserSerializer.new(users).serializable_hash
+  end
+
+  def followers
+    users = @user.followers
+    render json: Api::V1::UserSerializer.new(users).serializable_hash
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
