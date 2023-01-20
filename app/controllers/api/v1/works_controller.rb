@@ -1,6 +1,4 @@
 class Api::V1::WorksController < ApplicationController
-  before_action :set_work, only: %i[show]
-
   def index
     works = Work.all
 
@@ -19,7 +17,7 @@ class Api::V1::WorksController < ApplicationController
 
   def show
     work = Work.find(params[:id])
-    render json: Api::V1::WorkSerializer.new(@work).serializable_hash[:data]
+    render json: Api::V1::WorkSerializer.new(work).serializable_hash[:data]
   end
 
   def update

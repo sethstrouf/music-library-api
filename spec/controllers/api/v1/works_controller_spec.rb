@@ -10,6 +10,7 @@ describe Api::V1::WorksController, type: :request do
     }
 
     @user = create_user
+    @user.update!(admin: true)
     login(@user)
   end
 
@@ -31,6 +32,9 @@ describe Api::V1::WorksController, type: :request do
       post '/api/v1/works',
         params: {
           work: @work_params
+        },
+        headers: {
+          'Authorization': response.headers['Authorization']
         }
     end
 
@@ -58,6 +62,9 @@ describe Api::V1::WorksController, type: :request do
           work: {
             title: 'Updated Title'
           }
+        },
+        headers: {
+          'Authorization': response.headers['Authorization']
         }
     end
 
@@ -69,7 +76,10 @@ describe Api::V1::WorksController, type: :request do
   describe 'DELETE #destroy' do
     before do
       @new_work = Work.create!(@work_params)
-      delete "/api/v1/works/#{@new_work.id}"
+      delete "/api/v1/works/#{@new_work.id}",
+        headers: {
+          'Authorization': response.headers['Authorization']
+        }
     end
 
     it 'destroys work' do
