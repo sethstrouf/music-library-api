@@ -7,7 +7,9 @@ Rails.application.routes.draw do
       resources :works, only: %w[index create show update destroy]
       resources :libraries, only: %w[index create show update destroy]
       resources :library_works, only: %w[index create show update destroy]
-      resources :relationships, only: [:create, :destroy]
+      resources :relationships, only: %w[create destroy]
+      resources :reset_password, only: %w[create]
+      post '/update_password', to: 'reset_password#update_password'
       get '/search_works', to: 'search#search_works'
       get '/search_library_works', to: 'search#search_library_works'
       get '/search_following_colleagues', to: 'search#search_following_colleagues'

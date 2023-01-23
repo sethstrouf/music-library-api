@@ -42,3 +42,7 @@ end
 group :production do
   gem "aws-sdk-s3", "1.114.0", require: false
 end
+
+group :development do
+  gem 'letter_opener', '~> 1.4', '>= 1.4.1'
+end
